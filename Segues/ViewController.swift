@@ -8,13 +8,23 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController {}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
+// MARK: - Navigation
+extension ViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print(#line, #function, segue.identifier ?? "nil")
+        
+        let destination = segue.destination
+        
+        if let destination = destination as? SecondViewController {
+            destination.dateTitle = "\(Date())"
+        }
+        
+        destination.navigationItem.title = "\(Date())"
     }
-
-
+    
+    @IBAction func unwind(segue: UIStoryboardSegue) {
+        print(#line, #function, segue.identifier ?? "nil")
+    }
 }
-
